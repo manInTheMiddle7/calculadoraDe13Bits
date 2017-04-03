@@ -3,7 +3,9 @@
 #fuses NOPBADEN, NOMCLR, STVREN, NOLVP, NODEBUG
 #use delay(clock=16000000)
 #use FAST_IO(ALL)
-   
+
+void errorDivisor0();
+
 void main (void){
    int16 operando1=0,operando2=0;
    int16 resultado=0;
@@ -54,7 +56,14 @@ void main (void){
       }
       else if(tipoOperador==4)
       {
+         if(operando2==0)
+         {
+            errorDivisor0();
+         }
+         else
+         {
             resultado=operando1/operando2;
+         }         
       }    
       
         output_a(resultado);
@@ -62,3 +71,35 @@ void main (void){
         output_e(resultado>>10);     
    }
 }   
+
+void errorDivisor0()
+{     
+   output_high(PIN_A0);
+   output_high(PIN_A1);
+   output_high(PIN_A2);
+   output_high(PIN_A3);
+   output_high(PIN_A4);
+   output_high(PIN_A5);
+   output_high(PIN_B0);
+   output_high(PIN_B1);
+   output_high(PIN_B2);
+   output_high(PIN_B3);
+   output_high(PIN_E0);
+   output_high(PIN_E1);
+   output_high(PIN_E2);
+   delay_ms(200); 
+   output_low(PIN_A0);
+   output_low(PIN_A1);
+   output_low(PIN_A2);
+   output_low(PIN_A3);
+   output_low(PIN_A4);
+   output_low(PIN_A5);
+   output_low(PIN_B0);
+   output_low(PIN_B1);
+   output_low(PIN_B2);
+   output_low(PIN_B3);
+   output_low(PIN_E0);
+   output_low(PIN_E1);
+   output_low(PIN_E2);
+   delay_ms(200);   
+}
