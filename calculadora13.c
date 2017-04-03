@@ -17,6 +17,7 @@ void main (void){
    while(true)
    {
    //Tipo De Operacion !!
+      delay_ms(20); //Antirebote por software
       if(input(PIN_B4))
       {
          tipoOperador=1;   //suma
