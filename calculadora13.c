@@ -22,7 +22,7 @@ puerto c como entrada
    set_tris_e(0b00000000);
    set_tris_d(0b11111111);
 // establecer el pin C7 como salida para poder mostrar leds correctamente
-   set_tris_c(0b01111111);
+   set_tris_c(0b11111111);
    while(true)
    {
    //Tipo De Operacion !!
@@ -83,6 +83,10 @@ aparezcan en el puerto e(0,1,2)
    }
 }   
 
+/*
+Se muestra un parpadeo al usuario para indicar le que el divisor es 0,
+lo cual es un error aritmetico
+*/
 void errorDivisor0()
 {     
    output_high(PIN_A0);
